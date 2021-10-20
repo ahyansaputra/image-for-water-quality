@@ -4,7 +4,7 @@
 ### Pendahuluan
 > Pada submission ini, saya menggunakan dataset [Book Reviews](https://www.kaggle.com/arashnic/book-recommendation-dataset) sebagai proyek akhir machine learning terapan. Dataset ini berisi tentang kumpulan data buku dan hasil review dari pengguna.
 
-- Referensi terkait:
+Referensi terkait:
 * [Colaborative Filtering](https://www.kaggle.com/rishitarya/collaborative-filtering)
 * [Book Recomender System](https://www.kaggle.com/hocohelper/book-recommender-system)
 * [Book Recomendation](https://www.kaggle.com/aadarshraj4444/book-recommendation)
