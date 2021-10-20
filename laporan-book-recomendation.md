@@ -22,7 +22,7 @@
 
 > Contoh pemodelan sistem rekomendasi menggunakan content based filtering (Sumber: Modul Machine Learning Terapan oleh Dicoding):
 
-![Content Based Filtering](https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/academy/dos:46ce6a2a9d4d38560021dba74dcba60420210910164924.jpeg)
+![Content Based Filtering](https://github.com/ahyansaputra/image/blob/main/content-base-filtering.jpeg)
 
 ## Data Understanding
 > Berikut adalah isi konten dataset [Book Recomendation](https://www.kaggle.com/arashnic/book-recommendation-dataset).
