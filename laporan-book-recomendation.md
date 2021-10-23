@@ -30,24 +30,24 @@ Referensi terkait:
 ![Book Recomendation Dataset](https://raw.githubusercontent.com/ahyansaputra/image/main/book-rec-dataset.png)
 
 1. Book.csv
-* a. ISBN                 : Nomor identitas buku
-* b. Book-Title           : Judul buku
-* c. Book-Author          : Penulis buku
-* d. Year-of-Publication  : Tahun terbit buku
-* e. Publisher            : Penerbit buku
-* f. Image-url-s          : Tautan gambar pendek
-* g. Image-url-m          : Tautan gambar medium
-* h. Image-url-l          : Tautan gambar panjang
+* ISBN                 : Nomor identitas buku
+* Book-Title           : Judul buku
+* Book-Author          : Penulis buku
+* Year-of-Publication  : Tahun terbit buku
+* Publisher            : Penerbit buku
+* Image-url-s          : Tautan gambar pendek
+* Image-url-m          : Tautan gambar medium
+* Image-url-l          : Tautan gambar panjang
 
 2. Rating.csv
-* a. User-Id              : Nomor identitas pengguna
-* b. ISBN                 : Nomor identitas buku
-* c. BookRating           : Rating buku
+* User-Id              : Nomor identitas pengguna
+* ISBN                 : Nomor identitas buku
+* BookRating           : Rating buku
 
 3. User.csv
-* a. User-Id              : Nomor idenitas pengguna
-* b. Location             : Kota tinggal pengguna
-* c. Age                  : Usia pengguna
+* User-Id              : Nomor idenitas pengguna
+* Location             : Kota tinggal pengguna
+* Age                  : Usia pengguna
 
 ## Data Preparation
 > Metode data preparation yang saya gunakan adalah mengatasi missing value. Berikut langkah-langkah yang saya lakukan
