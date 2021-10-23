@@ -90,12 +90,14 @@ KNN|RF
 > Pada kasus ini, saya menggunakan kasus klasifikasi dengan menggunakan metriks precision, recall, dan f1-score.
 
 - KNN
+
 is_safe|Precission|Recall|F1-Score
 -------|----------|------|--------
 0|94%|98%|96%
 1|23%|9%|13%
 
 - RF
+
 is_safe|Precission|Recall|F1-Score
 -------|----------|------|--------
 0|100%|95%|97%
