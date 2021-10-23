@@ -20,14 +20,14 @@ Referensi terkait:
 - *Content Based Filtering*
 > Content based filtering merupakan model rekomendasi berdasarkan kemiripan item tertentu yang disukai oleh pengguna. 
 
-> Contoh pemodelan sistem rekomendasi menggunakan content based filtering (Sumber: Modul Machine Learning Terapan oleh Dicoding):
+> Ilustrasi pemodelan sistem rekomendasi menggunakan content based filtering (Sumber: Modul Machine Learning Terapan oleh Dicoding):
 
-![Content Based Filtering](https://github.com/ahyansaputra/image/blob/main/content-base-filtering.jpeg)
+![Content Based Filtering](https://raw.githubusercontent.com/ahyansaputra/image/main/content-base-filtering.jpeg)
 
 ## Data Understanding
 > Berikut adalah isi konten dataset [Book Recomendation](https://www.kaggle.com/arashnic/book-recommendation-dataset).
 
-![Book Recomendation Dataset](https://github.com/ahyansaputra/image/blob/main/book-rec-dataset.png)
+![Book Recomendation Dataset](https://raw.githubusercontent.com/ahyansaputra/image/main/book-rec-dataset.png)
 
 1. Book.csv
 * a. ISBN                 : Nomor identitas buku
@@ -52,21 +52,21 @@ Referensi terkait:
 ## Data Preparation
 > Metode data preparation yang saya gunakan adalah mengatasi missing value. Berikut langkah-langkah yang saya lakukan
 
-![Missing-Value1](https://github.com/ahyansaputra/image/blob/main/missing-value-1.png)
-![Missing-Value2](https://github.com/ahyansaputra/image/blob/main/missing-value-2.png)
-![Missing-Value3](https://github.com/ahyansaputra/image/blob/main/missing-value-3.png)
+![Missing-Value1](https://raw.githubusercontent.com/ahyansaputra/image/main/missing-value-1.png)
+![Missing-Value2](https://raw.githubusercontent.com/ahyansaputra/image/main/missing-value-2.png)
+![Missing-Value3](https://raw.githubusercontent.com/ahyansaputra/image/main/missing-value-3.png)
 
 > Sebelum dimasukkan ke dalam model, perlu dilakukan penghapusan data duplikat pada dataset
 
-![Data-clean](https://github.com/ahyansaputra/image/blob/main/data-clean.png)
-![Data-clean2](https://github.com/ahyansaputra/image/blob/main/data-clean-2.png)
+![Data-clean](https://raw.githubusercontent.com/ahyansaputra/image/main/data-clean.png)
+![Data-clean2](https://raw.githubusercontent.com/ahyansaputra/image/main/data-clean-2.png)
 
 > Selanjutnya mengkonversi dataseries ke dalam list
 
-![Dataseries-to-list](https://github.com/ahyansaputra/image/blob/main/dataseries-to-list.png)
+![Dataseries-to-list](https://raw.githubusercontent.com/ahyansaputra/image/main/dataseries-to-list.png)
 
 > Tahap akhir yakni membuat dictionary untuk pasangan key-value
-![Key:Value](https://github.com/ahyansaputra/image/blob/main/dict-key-value.png)
+![Key:Value](https://raw.githubusercontent.com/ahyansaputra/image/main/dict-key-value.png)
 
 ## Modelling
 > Pada tahap modelling ini, model development yang digunakan yakni *Content Based Filtering*
@@ -75,7 +75,7 @@ Referensi terkait:
 
 > Berikut top 5 buku hasil rekomendasi sistem:
 
-![Top-5-Book-Recomendation](https://github.com/ahyansaputra/image/blob/main/model-recomendation.png)
+![Top-5-Book-Recomendation](https://raw.githubusercontent.com/ahyansaputra/image/main/model-recomendation.png)
 
 > Dari gambar diatas, dapat dilihat terdapat 5 jenis buku karya Fern Michaels. Hal ini sesuai dengan model development yang digunakan. Bahwa sistem akan merekomendasikan buku berdasarkan kontennya saja. Berdasarkan sistem yang dibangun, sistem akan mencari author dari buku terkait, kemudian sistem akan menyajikan buku-buku dengan judul berbeda dari penulis yang sama atau penulis dengan nama yang hampir mirip.
 
@@ -83,15 +83,15 @@ Referensi terkait:
 > Model development *Content Based Filtering* menggunakan 2 metrik untuk membangun sistem rekomendasinya:
 1. TF-IDF Vectorizer
 
-![TF-IDF-1](https://github.com/ahyansaputra/image/blob/main/tf-idf.png)
+![TF-IDF-1](https://raw.githubusercontent.com/ahyansaputra/image/main/tf-idf.png)
 
-![TF-IDF-2](https://github.com/ahyansaputra/image/blob/main/tf-idf.png)
+![TF-IDF-2](https://raw.githubusercontent.com/ahyansaputra/image/main/tf-idf-2.png)
 
-![TF-IDF-3](https://github.com/ahyansaputra/image/blob/main/tf-idf-3.png)
+![TF-IDF-3](https://raw.githubusercontent.com/ahyansaputra/image/main/tf-idf-3.png)
 
 2. Cosine Similarity
 
-![Cosine Similarity](https://github.com/ahyansaputra/image/blob/main/cossin-similarity.png)
+![Cosine Similarity](https://raw.githubusercontent.com/ahyansaputra/image/main/cossin-similarity.png)
 
 
 ### Kesimpulan
