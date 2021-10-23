@@ -53,12 +53,22 @@ Referensi terkait:
 > Metode data preparation yang saya gunakan adalah mengatasi missing value. Berikut langkah-langkah yang saya lakukan
 
 ![Missing-Value1](https://raw.githubusercontent.com/ahyansaputra/image/main/missing-value-1.png)
+
+* untuk mengatasi missing vaue tersebut kita hapus saja menggunakan fungsi dropna()
 ![Missing-Value2](https://raw.githubusercontent.com/ahyansaputra/image/main/missing-value-2.png)
+
+* cek data setelah di hapus missing valuenya
 ![Missing-Value3](https://raw.githubusercontent.com/ahyansaputra/image/main/missing-value-3.png)
 
 > Sebelum dimasukkan ke dalam model, perlu dilakukan penghapusan data duplikat pada dataset
 
+* data duplikat yang akan dihapus yakni data dengan unique value **ISBN**
+
+* buat valiabel bernama preparation
+
 ![Data-clean](https://raw.githubusercontent.com/ahyansaputra/image/main/data-clean.png)
+
+* gunakan fungsi drop_duplicates() untuk menghapus data duplikat
 ![Data-clean2](https://raw.githubusercontent.com/ahyansaputra/image/main/data-clean-2.png)
 
 > Selanjutnya mengkonversi dataseries ke dalam list
@@ -66,6 +76,7 @@ Referensi terkait:
 ![Dataseries-to-list](https://raw.githubusercontent.com/ahyansaputra/image/main/dataseries-to-list.png)
 
 > Tahap akhir yakni membuat dictionary untuk pasangan key-value
+
 ![Key:Value](https://raw.githubusercontent.com/ahyansaputra/image/main/dict-key-value.png)
 
 ## Modelling
