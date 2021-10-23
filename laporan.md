@@ -36,6 +36,8 @@ Disini saya menggunakan 2 model development machine learning:
 ### Data Understanding
 Berikut adalah isi konten dari dataset [Water Quality](https://www.kaggle.com/mssmartypants/water-quality):
 
+![Water-quality-dataset](https://raw.githubusercontent.com/ahyansaputra/image-for-water-quality/main/water-quality-download.png)
+
 - aluminium - berbahaya jika kandungannya lebih besar dari 2.8
 - ammonia - berbahaya jika kandungannya lebih besar dari 32.5
 - arsenic - berbahaya jika kandungannya lebih besar dari 0.01
@@ -73,34 +75,32 @@ Berikut adalah isi konten dari dataset [Water Quality](https://www.kaggle.com/ms
 > Saya menggunakan 2 algoritma penyelesaian masalah untuk mengetahui akurasi dataset dengan menggunakan pendekatan K-Nearest Neighbour (KNN) dan Random Forest (RF).
 
 > Berdasarkan pemodelan dengan dua algoritma tersebut saya mendapatkan nilai akurasi dari masing masing prediksi dua model.
-- KNN
-> Dengan menggunakan KNN, prediksi akurasi dari dataset sebesar 92%.
-- RF
-> Dengan menggunakan RF, prediksi akurasi dari dataset sebesar 94%
+**KNN**|**RF**
+-------|------
+92%|94%
+
+> Berikut hasil imlementasinya di dalam notebook:
+
+-KNN
+> ![Implementasi KNN Prediction](https://raw.githubusercontent.com/ahyansaputra/image-for-water-quality/main/KNN-Classification-acc.png)
+
+-RF
+> ![Implementasi RF Prediction](https://raw.githubusercontent.com/ahyansaputra/image-for-water-quality/main/RF-Classification-acc.png)
 
 ## Evaluation
 > Pada kasus ini, saya menggunakan kasus klasifikasi dengan menggunakan metriks precision, recall, dan f1-score.
-- KNN
-> Kelas 0:
-> Precission = 94%
-> Recall = 98%
-> F1-Score = 96$
 
-> Kelas 1:
-> Precission = 23%
-> Recall = 9%
-> F1-Score = 13%
+- KNN
+is_safe|Precission|Recall|F1-Score
+-------|----------|------|--------
+0|94%|98%|96%
+1|23%|9%|13%
 
 - RF
-> Kelas 0:
-> Precisiion = 100%
-> Recall = 95%
-> F1-Score = 97%
-
-> Kelas 1:
-> Precission = 18%
-> Recall = 86%
-> F1-Score = 29%
+is_safe|Precission|Recall|F1-Score
+-------|----------|------|--------
+0|100%|95%|97%
+1|18%|86%|29%
 
 
 1. Kelebihan Klasifikasi Metriks(precision, recall, dan f1-score)
@@ -111,8 +111,10 @@ Berikut adalah isi konten dari dataset [Water Quality](https://www.kaggle.com/ms
 
 Cara mengaplikasikan metriks ke dalam kode:
 1. KNN
-> ![Water-Quality: KNN](https://github.com/ahyansaputra/image-for-water-quality/blob/main/KNN-Water.png).
+> ![Water-Quality: KNN](https://raw.githubusercontent.com/ahyansaputra/image-for-water-quality/main/KNN-Water.png).
 2. Random Forest
-> ![Water-Quality: RF](https://github.com/ahyansaputra/image-for-water-quality/blob/main/RF-Water.png). 
+> ![Water-Quality: RF](https://raw.githubusercontent.com/ahyansaputra/image-for-water-quality/main/RF-Water.png). 
 
-**---Ini adalah bagian akhir laporan---**
+
+### Kesimpulan
+> Model untuk memprediksi data air yang layak di konsumsi oleh manusia telah selesai dibuat dan model ini dapat digunakan untuk memprediksi data sebenarnya. Namun demikian beberapa pengembangan lain masih dapat dilakukan agar membuat model yang memiliki akurasi lebih tinggi lagi seperti dengan mencoba penggunaan algoritma lainnya dalam membuat model seperti Random Forest, Decision Tree, Gradient Boosting dan masih banyak lagi.
