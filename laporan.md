@@ -10,8 +10,7 @@ Berikut tautan untuk dataset yang saya gunakan untuk proyek ini:
 > Air merupakan kebutuhan pokok setiap makhluk hidup, terutama manusia. Kualitas air diperlukan sebagai tolak ukur layaknya air untuk dikonsumsi. Kualitas air dapat diketahui dengan melakukan pengujian tertentu terhadap air tersebut. Pengujian yang dilakukan adalah uji unsur senyawa yang dikandung didalam air.
 
 - Masalah
-> Masalah utama yang dihadapi berkaitan dengan sumber daya air adalah kuantitas air yang sudah tidak mampu memenuhi kebutuhan yang terus meningkat dan kualitas air untuk keperluan domestik yang semakin menurun. Pengujian kualitas air masih menggunakan cara manual yakni dengan uji kimia, fisik, biologi, dan uji penampakan(warna, bau). Metode ini memiliki kekurangan yakni hasil pengamatan yang tidak akurat karena adanya faktor-faktor penghambat, baik faktor internal ataupun faktor eksternal.
-   Dengan adanya proyek ini, diharapkan pengujian kualitas air dapat dilakukan menggunakan machine learning.
+> Masalah utama yang dihadapi berkaitan dengan sumber daya air adalah kuantitas air yang sudah tidak mampu memenuhi kebutuhan yang terus meningkat dan kualitas air untuk keperluan domestik yang semakin menurun. Pengujian kualitas air masih menggunakan cara manual yakni dengan uji kimia, fisik, biologi, dan uji penampakan(warna, bau). Metode ini memiliki kekurangan yakni hasil pengamatan yang tidak akurat karena adanya faktor-faktor penghambat, baik faktor internal ataupun faktor eksternal. Dengan adanya proyek ini, diharapkan pengujian kualitas air dapat dilakukan menggunakan machine learning.
 
 - Referensi Pendukung
   * [Jurnal Ilmu Lingkungan: KAJIAN KUALITAS AIR DAN PENGGUNAAN SUMUR GALI OLEH MASYARAKAT DI SEKITAR SUNGAI KALIYASA KABUPATEN CILACAP](http://repository.unpkediri.ac.id/1853/).
@@ -19,11 +18,15 @@ Berikut tautan untuk dataset yang saya gunakan untuk proyek ini:
 
 
 ## Business Understanding
+Untuk mengetahui klasifikasi kualitas air, saya menggunakan metriks akurasi, precission, recall dan f1-score. Batasan problem statement yang digunakan yakni menggunakan dataset [Water Quality](https://www.kaggle.com/mssmartypants/water-quality) yang saya gunakan untuk proyek ini.
+
 ### Problem Statement
-- Kandungan apa saja yang menentukan aman atau tidaknya air untuk dikonsumsi?
+- Accuracy: Berapa persen mesin dapat memprediksi air yang aman dikonsumsi dan tidak aman dikonsumsi?
+- Precission: Berapa persen air yang benar tidak aman dikonsumsi berdasarkan keseluruhan air yang diprediksi tidak aman dikonsumsi?. Dan, berapa persen air yang aman dikonsumsi berdasarkan keseluruhan air yang diprediksi aman dikonsumsi?
+-Recall: Berapa persen air yang diprediksi tidak aman dikonsumsi dibandingkan keseluruhan data air yang sebenarnya tidak aman dikonsumsi? Dan, berapa persen air yang diprediksi aman dikonsumsi dibandingkan keseluruhan data air yang sebenarnya aman dikonsumsi?
 
 ### Goals
-- Menciptakan model machine learning untuk mengetahui kualitas air berdasarkan kandungannya.
+- Menciptakan model machine learning untuk mengetahui kualitas air yang aman dikonsumsi dan tidak aman dikonsumsi.
 
 ### Solution Statements
 Disini saya menggunakan 2 model development machine learning:
@@ -86,6 +89,8 @@ KNN|RF
 -RF
 > ![Implementasi RF Prediction](https://raw.githubusercontent.com/ahyansaputra/image-for-water-quality/main/RF-Classification-acc.png)
 
+> Akurasi model merupakan rasio prediksi benar dari keseluruhan data. Menurut data akurasi menggunakan KNN dan RF, dapat disimpulkan bahwa mesin sudah dapat memprediksi data dengan tingkat akurasi lebih dari pada 90%.
+
 ## Evaluation
 > Pada kasus ini, saya menggunakan kasus klasifikasi dengan menggunakan metriks precision, recall, dan f1-score.
 
@@ -103,6 +108,7 @@ is_safe|Precission|Recall|F1-Score
 0|100%|95%|97%
 1|18%|86%|29%
 
+> Data dari tabel diatas sudah bisa menjawab probelm statement untuk proyek ini.
 
 1. Kelebihan Klasifikasi Metriks(precision, recall, dan f1-score)
 * Penggunaan metrik precission, recall dan f1-score dapat menjadi solusi terbaik dalam proses klasifikasi karena ada beberapa momen tertentu penggunaan metrik akurasi kurang tepat untuk permasalahan data yang tidak seimbang.
