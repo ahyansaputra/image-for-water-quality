@@ -75,9 +75,13 @@ Berikut adalah isi konten dari dataset [Water Quality](https://www.kaggle.com/ms
 > Saya menggunakan 2 algoritma penyelesaian masalah untuk mengetahui akurasi dataset dengan menggunakan pendekatan K-Nearest Neighbour (KNN) dan Random Forest (RF).
 
 > Berdasarkan pemodelan dengan dua algoritma tersebut saya mendapatkan nilai akurasi dari masing masing prediksi dua model.
-**KNN**|**RF**
--------|------
-92%|94%
+First Header | Second Header
+------------ | -------------
+Content from cell 1 | Content from cell 2
+Content in the first column | Content in the second column
+ **KNN**|**RF**
+ -------|------
+ 92%|94%
 
 > Berikut hasil imlementasinya di dalam notebook:
 
