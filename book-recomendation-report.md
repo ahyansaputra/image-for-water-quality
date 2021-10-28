@@ -9,7 +9,7 @@
 > Terdapat banyak layanan penyedia buku online (ebooks) seperti googole play books, open library, good Read's dan lain sebagainya. Pengguna yang menggunakan layanan diatas selalu memilih buku yang sesuai dengan selera mereka. Tetapi terdapat ratusan bahkan ribuan buku yang disediakan di aplikasi tersebut. Mereka akan kesulitan mendapatkan buku yang ingin mereka baca, atau bahkan menghabiskan waktu di internet untuk menemukan buku bacaan kesukaan mereka.
 
 ### Mengapa perlu diselesaikan?
-> Membutuhkan waktu yang sangat banyak jika pengguna layanan ebooks harus memeriksa satu persatu buku yang ada di layanan yang mereka gunakan. Maka dari itu dibutuhkan sebuah sistem yang dapat merekomendasikan buku berdasarkan kriteria buku kesukaan pengguna. Sehingga para penikmat buku dapat dengan mudah menemukan buku kesukaan mereka dan dapat mengefisiensikan waktu mereka.
+> Membutuhkan waktu yang sangat banyak jika pengguna layanan ebooks harus memeriksa satu persatu buku yang ada di layanan yang mereka gunakan. Maka dari itu dibutuhkan sebuah sistem yang dapat merekomendasikan buku berdasarkan preferensi (dalam hal ini rating) pengguna. Sehingga para penikmat buku dapat dengan mudah menemukan buku kesukaan mereka dan dapat mengefisiensikan waktu mereka.
 
 > Untuk menyelesaikan masalah tersebut, saya menggunakan dataset [Book Reviews](https://www.kaggle.com/arashnic/book-recommendation-dataset) untuk membangun sebuah sistem rekomendasi buku. Dataset ini berisi tentang kumpulan data buku dan hasil review dari pengguna.
 
@@ -20,10 +20,10 @@
 
 ## Business Understanding
 ### Problem Statement
-- Pada dasarnya sistem rekomendasi akan menyajikan data yang dibutuhkan oleh pengguna. Terutama pada proyek ini, bagaimana sistem mampu merekomendasikan buku berdasarkan rating buku dan preferensi pengguna?
+- Pada dasarnya sistem rekomendasi akan menyajikan data yang dibutuhkan oleh pengguna. Terutama pada proyek ini, bagaimana sistem mampu merekomendasikan buku berdasarkan preferensi pengguna?
 
 ### Goals
-- Tujuan dari proyek ini ialah, sistem mampu menampilkan rekomendasi buku dengan ketentuan: menampilkan top buku dengan nilai rating tertinggi dan merekomendasikan buku berdasarkan preferensi pengguna.
+- Tujuan dari proyek ini ialah, sistem mampu menampilkan rekomendasi buku dengan ketentuan: menampilkan top recomended buku dengan nilai rating tertinggi dan merekomendasikan buku yang dianggap sesuai dengan keinginan pengguna (dengan catatan buku tersebut belum pernah dibaca oleh pengguna).
 
 ### Solution Approach
 - *Colaborative Filtering*
@@ -67,6 +67,19 @@
 * User-Id              : Nomor idenitas pengguna
 * Location             : Kota tinggal pengguna
 * Age                  : Usia pengguna
+
+Sebelum masuk ke Data preparation terlebih dahulu saya menggabungkan dataset Book.csv dan Rating.csv dengan kriteria tertentu. Berikut kode yang saya gunakan:
+
+```
+all_book_rate = ratings
+all_book_name = pd.merge(all_book_rate, books[['ISBN','Book-Title', 'Book-Author']], on='ISBN', how='left')
+
+all_book_name
+```
+
+Berikut outputnya:
+
+![Data Preprocessing](https://raw.githubusercontent.com/ahyansaputra/image/main/data-preprocessing.png)
 
 ## Data Preparation
 
