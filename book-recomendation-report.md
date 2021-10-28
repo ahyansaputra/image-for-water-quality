@@ -222,6 +222,7 @@ print(x, y)
 ```
 
 Berikut outputnya:
+
 ![Train Test Split](https://raw.githubusercontent.com/ahyansaputra/image/main/train-test-split.png)
 
 ## Modelling
