@@ -68,16 +68,9 @@
 * Location             : Kota tinggal pengguna
 * Age                  : Usia pengguna
 
-Sebelum masuk ke Data preparation terlebih dahulu saya menggabungkan dataset Book.csv dan Rating.csv dengan kriteria tertentu. Berikut kode yang saya gunakan:
+Sebelum masuk ke Data preparation terlebih dahulu saya menggabungkan dataset Book.csv dan Rating.csv dengan kriteria tertentu. 
 
-```
-all_book_rate = ratings
-all_book_name = pd.merge(all_book_rate, books[['ISBN','Book-Title', 'Book-Author']], on='ISBN', how='left')
-
-all_book_name
-```
-
-Berikut outputnya:
+Berikut tampilan data yang digunakan setelah digabungkan:
 
 ![Data Preprocessing](https://raw.githubusercontent.com/ahyansaputra/image/main/data-preprocessing.png)
 
@@ -99,7 +92,21 @@ Berikut langkah-langkah yang saya lakukan
 
 ![Missing-Value3](https://raw.githubusercontent.com/ahyansaputra/image/main/missing-value-3.png)
 
-> Sebelum dimasukkan ke dalam model, perlu dilakukan penghapusan data duplikat pada dataset
+* Selanjutnya mengkonversi dataseries ke dalam list
+
+![Dataseries-to-list](https://raw.githubusercontent.com/ahyansaputra/image/main/dataseries-to-list.png)
+
+* Tahap selanjutnya yakni membuat dictionary untuk pasangan key-value
+
+![Key:Value](https://raw.githubusercontent.com/ahyansaputra/image/main/dict-key-value.png)
+
+* Selanjutnya mengambil sampel acak dari data preparation sebanyak 10000 sampel agar data mudah diolah.
+
+![1000 Sample](https://raw.githubusercontent.com/ahyansaputra/image/main/Preparation-1000.png)
+
+2. Penghapusan Data Duplikat
+
+> Data duplikat perlu dilakukan untuk menghindaari adanya data yang sama pada data training dan data testing. Jika dibiarkan akan mengurangi tingkat akurasi model yang dibuat.
 
 * data duplikat yang akan dihapus yakni data dengan unique value **ISBN**
 
@@ -111,19 +118,7 @@ Berikut langkah-langkah yang saya lakukan
 
 ![Data-clean2](https://raw.githubusercontent.com/ahyansaputra/image/main/data-clean-2.png)
 
-> Selanjutnya mengkonversi dataseries ke dalam list
-
-![Dataseries-to-list](https://raw.githubusercontent.com/ahyansaputra/image/main/dataseries-to-list.png)
-
-> Tahap selanjutnya yakni membuat dictionary untuk pasangan key-value
-
-![Key:Value](https://raw.githubusercontent.com/ahyansaputra/image/main/dict-key-value.png)
-
-> Selanjutnya mengambil sampel acak dari data preparation sebanyak 10000 sampel agar data mudah diolah.
-
-![1000 Sample](https://raw.githubusercontent.com/ahyansaputra/image/main/Preparation-1000.png)
-
-2. Melakukan Encodeing Data
+3. Melakukan Encoding Data
 
 > Alasan saya menggunakan metode ini karena saya perlu menyandikan data sampel acak dalam bentuk integer. Dan juka terdapat beberapa nilai ISBN yang bertipe objek, sehingga perlu disandikan ke dalam bentuk integer.
 
@@ -198,7 +193,7 @@ Berikut outputnya:
 
 ![Dataset Acak](https://raw.githubusercontent.com/ahyansaputra/image/main/mengacak-dataset-1000.png)
 
-3. Train Test Split
+4. Train Test Split
 
 > Terakhir adalah menggunakan Train-Test-Split. Saya menggunakan metode ini karena saya perlu mempertahankan sebagian data yang ada untuk menguji seberapa baik generalisasi model terhadap data baru.
 
@@ -230,135 +225,19 @@ Berikut outputnya:
 
 > Modelling ini perlu dilakukan agar sistem dapat membangun sistem rekomendasi sederhana untuk recomendasi buku.
 
-> Pada tahap ini, model menghitung skor kecocokan antara user dan buku dengan teknik embedding. Pertama, kita melakukan proses embedding terhadap data user dan buku. Selanjutnya, lakukan operasi perkalian dot product antara embedding user dan resto. Selain itu, kita juga dapat menambahkan bias untuk setiap user dan resto. Skor kecocokan ditetapkan dalam skala [0,1] dengan fungsi aktivasi sigmoid.
+> Pada tahap ini, model menghitung skor kecocokan antara user dan buku dengan teknik embedding. Pertama, kita melakukan proses embedding terhadap data user dan buku. Selanjutnya, lakukan operasi perkalian dot product antara embedding user dan buku. Selain itu, kita juga dapat menambahkan bias untuk setiap user dan buku. Skor kecocokan ditetapkan dalam skala [0,1] dengan fungsi aktivasi sigmoid.
 
-> Di sini, kita membuat class RecommenderNet dengan keras Model class.
+> Adapun model yang digunakan yakni Binary Crossentropy untuk menghitung loss function, Adam (Adaptive Moment Estimation) sebagai optimizer, dan root mean squared error (RMSE) sebagai metrics evaluation. 
 
-> Berikut kode yang digunakan:
+> Selanjutnya Melakukan Proses Training
 
-```
-class RecommenderNet(tf1.keras.Model):
- 
-  # Insialisasi fungsi
-  def __init__(self, num_users, num_book, embedding_size, **kwargs):
-    super(RecommenderNet, self).__init__(**kwargs)
-    self.num_users = num_users
-    self.num_book = num_book
-    self.embedding_size = embedding_size
-    self.user_embedding = layers.Embedding( # layer embedding user
-        num_users,
-        embedding_size,
-        embeddings_initializer = 'he_normal',
-        embeddings_regularizer = keras.regularizers.l2(1e-6)
-    )
-    self.user_bias = layers.Embedding(num_users, 1) # layer embedding user bias
-    self.book_embedding = layers.Embedding( # layer embeddings book
-        num_book,
-        embedding_size,
-        embeddings_initializer = 'he_normal',
-        embeddings_regularizer = keras.regularizers.l2(1e-6)
-    )
-    self.book_bias = layers.Embedding(num_book, 1) # layer embedding book bias
- 
-  def call(self, inputs):
-    user_vector = self.user_embedding(inputs[:,0]) # memanggil layer embedding 1
-    user_bias = self.user_bias(inputs[:, 0]) # memanggil layer embedding 2
-    book_vector = self.book_embedding(inputs[:, 1]) # memanggil layer embedding 3
-    book_bias = self.book_bias(inputs[:, 1]) # memanggil layer embedding 4
- 
-    dot_user_book = tf1.tensordot(user_vector, book_vector, 2) 
- 
-    x = dot_user_book + user_bias + book_bias
-    
-    return tf1.nn.sigmoid(x) # activation sigmoid
-```
-> Selanjutnya melakukan compile model. Model ini menggunakan Binary Crossentropy untuk menghitung loss function, Adam (Adaptive Moment Estimation) sebagai optimizer, dan root mean squared error (RMSE) sebagai metrics evaluation. 
-
-```
-model = RecommenderNet(num_users, num_book, 50) # inisialisasi model
- 
-# model compile
-model.compile(
-    loss = tf1.keras.losses.BinaryCrossentropy(),
-    optimizer = keras.optimizers.Adam(learning_rate=0.001),
-    metrics=[tf1.keras.metrics.RootMeanSquaredError()]
-)
-```
-
-> Melakukan Proses Training
-```
-# Memulai training
- 
-history = model.fit(
-    x = x_train,
-    y = y_train,
-    batch_size = 8,
-    epochs = 100,
-    validation_data = (x_val, y_val)
-)
-```
-> Berikut sebagian output dari hasil training model:
+Berikut sebagian output dari hasil training model:
 
 ![Training Data](https://raw.githubusercontent.com/ahyansaputra/image/main/training-data.png)
 
 > Mendapatkan N-Rekomendasi
+
 Untuk mendapatkan rekomendasi buku, pertama kita ambil sampel user secara acak dan definisikan variabel book_not_read yang merupakan daftar buku yang belum pernah dibaca oleh pengguna. Hal ini karena daftar book_not_read inilah yang akan menjadi book yang kita rekomendasikan. Sebelumnya, pengguna telah memberi rating pada beberapa buku yang telah mereka baca. Kita menggunakan rating ini untuk membuat rekomendasi buku yang mungkin cocok untuk pengguna. Nah, buku yang akan direkomendasikan tentulah buku yang belum pernah dibaca oleh pengguna. Oleh karena itu, kita perlu membuat variabel book_not_read sebagai daftar buku untuk direkomendasikan pada pengguna.Variabel book_not_read diperoleh dengan menggunakan operator bitwise (~) pada variabel book_read_by_user.
-
-Terapkan kode berikut.
-```
-book_df = book_new
- 
-# Mengambil sample user
-user_id = df.UserID.sample(1).iloc[0]
-book_read_by_user = df[df.UserID == user_id]
-
-book_not_read = book_df[~book_df['id'].isin(book_read_by_user.ISBN.values)]['id'] 
-book_not_read = list(
-    set(book_not_read)
-    .intersection(set(book_to_book_encoded.keys()))
-)
- 
-book_not_read = [[book_to_book_encoded.get(x)] for x in book_not_read]
-user_encoder = user_to_user_encoded.get(user_id)
-user_book_array = np.hstack(
-    ([[user_encoder]] * len(book_not_read), book_not_read)
-)
-```
-
-```
-ratings = model.predict(user_book_array).flatten()
- 
-top_ratings_indices = ratings.argsort()[-10:][::-1]
-recommended_book_ids = [
-    book_encoded_to_book.get(book_not_read[x][0]) for x in top_ratings_indices
-]
- 
-print('Showing recommendations for users: {}'.format(user_id))
-print('===' * 9)
-print('book with high ratings from user')
-print('----' * 8)
- 
-top_book_user = (
-    book_read_by_user.sort_values(
-        by = 'BookRating',
-        ascending=False
-    )
-    .head(5)
-    .ISBN.values
-)
- 
-book_df_rows = book_df[book_df['id'].isin(top_book_user)]
-for row in book_df_rows.itertuples():
-    print(row.book_name, ':', row.author_name)
- 
-print('----' * 8)
-print('Top 10 book recommendation')
-print('----' * 8)
- 
-recommended_book = book_df[book_df['id'].isin(recommended_book_ids)]
-for row in recommended_book.itertuples():
-    print(row.book_name, ':', row.author_name)
-```
 
 Berikut hasil recomendasi buku menggunakan model Colaborative Filtering:
 ![Top Recomendation](https://raw.githubusercontent.com/ahyansaputra/image/main/rek-colaborative-img.png)
